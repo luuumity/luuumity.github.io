@@ -1,0 +1,194 @@
+<!-- 本网页使用了段落/文本、列表/表格、超链接、表单等内容，内置CSS做排版。使用Formspree接收邮件转发（因Github只能托管静态网页）
+下一步尝试调用豆瓣API接口实现发送留言功能（但是不知道只依托前端可不可行，安全性肯定一般），以及使用更多的JS和CSS实现更好的页面效果。 -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>SJY个人主页</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+
+<!-- 外部样式表 -->
+<style>
+    body{
+    margin: 0;
+    padding: 0;
+    background: url(japan.jpg) no-repeat ;
+    background-size: cover;
+    /* background-position:center center;  */
+    /* 从哪开始展示 */
+    /* background-attachment: scroll;  */
+}
+.box{
+    width:450px ;
+    background: rgba(52, 68, 92,0.3);/*透明度0.3*/
+    padding:40px;
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.box-img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+ul{
+    margin: 2px;
+    padding: 0;
+}
+ /* 以横向列表形式放置图片  */
+ /* .box li{
+    display: inline-block;
+    margin: 12px;
+    list-style: none;
+    
+}  */
+ .icon{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+input[type=submit] {
+    width: 80%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* CSS 中，类选择器使用.符号作为前缀 */
+.sub{
+    width: 500px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    }
+/* .sub form label{} */
+/* 链接设定要放在外面！ */
+    a:link {color: #ffffff;text-decoration:none;}      /* 未访问链接*/
+    a:visited {color:#f5e7c2;text-decoration:none;}  /* 已访问链接 */
+    a:hover {color:#96fa81;text-decoration:underline}  /* 鼠标移动到链接上 */
+    a:active {color:#96fa81;text-decoration:underline} 
+
+/* 为可输入选择列表使用 */
+.typelist{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+button {
+  background-color: rgb(15, 246, 15);
+}
+
+</style>
+<body>
+    <div class="box" style="overflow:auto">
+        <img src="celeste2.jpg" alt="" class="box-img">
+        <h1 style="letter-spacing: 3px;">SJY</h1>
+        <p style="font-size: 20px;">My homepage</p>
+        <!-- autoplay可能被浏览器禁用 -->
+        <audio src="Strawberries And Cigarettes-Troye Sivan.mp3" autoplay="autoplay" loop="loop" controls="controls"></audio>
+
+        <!-- 表格整个居中，图像与文字垂直对齐 但文字长短不一,表格单元格间距怎么调——默认table-layout是auto，根据内容长度而变，可以改为fixed-->
+        <table style="font-size: 20px; ; margin: auto; text-align: center; table-layout: fixed; margin-top: 8px;"> 
+            <tr>
+                <!-- 手动调整每个单元格占比 -->
+                <!-- 图文同时挂链接 -->
+                <!-- <td width=33%><a href="tencent://message/?uin=1543190677&Site=&menu=yes"><img src="QQ.jpg" alt="" class="icon"></a></td> -->
+                <td width=33%><a href="my_wechat.jpg"><img src="wechat.jpg" alt="" class="icon"></a></td>
+                <td width=33%><a href="https://www.douban.com/people/205850908/?_i=5503157IZ5dazL"><img src="douban.png" alt="" class="icon"></a></td>
+                <td width=33%><a href="https://space.bilibili.com/100667368?from=search&seid=3576906122953468479"><img src="bilibili.jpg" alt="" class="icon"></a></td>
+            </tr>
+            <tr>
+                <!-- 自动垂直对齐 -->
+                <!-- 不提倡用HTML表格进行页面布局，需要系统学习CSS layout -->
+                <!-- <td><a href="tencent://message/?uin=1543190677&Site=&menu=yes">QQ</a></td> -->
+                <td><a href="my_wechat.jpg">Wechat</a></td>
+                <td><a href="https://www.douban.com/people/205850908/?_i=5503157IZ5dazL">Douban</a></td>
+                <td><a href="https://space.bilibili.com/100667368?from=search&seid=3576906122953468479">bilibili</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="sub">
+        
+        <form action="https://formspree.io/f/xoqzzoyk" method="POST">
+            <p style="font-size: 20px; text-align: center;">Message Board</p>
+
+            <label> Your Email?
+              <input type="text" name="email" placeholder="Your email..">
+            </label>
+            
+            <br>
+
+            <label>Talk To Me:
+              <input  style="height: 120px" type="text" name="message" placeholder="Leave your message here ~">
+            </label>
+
+            <!-- <div class="typelist"> -->
+            <!-- 注意关联关系，如"movie"和"movies"，label、input和datalist不要冲突 -->
+            <label for="movie">Tell me your favourite movie?</label>
+            <input class="typelist" list="movies" id="movie" name="My favourite movie is:" />
+            <datalist id="movies">
+                <option value="Florida Project">Florida Project</option>
+                <option value="The Owl House">The Owl House</option>
+                <option value="Arcane">Arcane</option>
+                <option value="...">...</option>
+            </datalist>
+            <!-- </div> -->
+
+            <!-- <button style="display: block; margin: 0 auto; width: 100px; height: 30px;" type="submit">Send</button> -->
+            <input type="submit" value="Submit">
+
+<!--        old version
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" placeholder="Your name..">
+        
+            <label for="email">E-mail</label>
+            <input type="text" id="email" name="Email" placeholder="Your e-mail..">
+            
+            for于id一一对应，将label元素绑定到别的元素上 
+            <label for="favor">Tell me your favourite movie?</label>
+            <select id="favor" name="Favor" >
+              <option value="None">None</option>
+              <option value="Inception">Inception</option>
+              <option value="Florida Project">Florida Project</option>
+              <option value="The Owl House">The Owl House</option>
+              <option value="Arcane">Arcane</option>
+            </select>
+
+            <label for="sug">Talk To Me</label>
+            <input style="height: 150px" type="text" id="sug" name="suggestions" placeholder="Leave your message here ~">
+            <input type="submit" value="Submit">  -->
+
+          </form>
+    </div>
+    
+</body>
+</html>
